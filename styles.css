@@ -25,3 +25,9 @@
 
 /* Retrato da biografia com altura proporcional e base alinhada. */
 .about-visual{align-self:end}.about-portrait{height:auto;min-height:0;aspect-ratio:3/4}.about-portrait .doctor-photo{object-position:center}
+
+/* Foto acompanha o scroll apenas dentro da biografia. */
+.about-main{display:contents}
+@media(min-width:651px){.about-grid{display:block}.about-main{display:grid;grid-template-columns:.9fr 1.1fr;gap:65px;align-items:start}.about-visual{position:sticky;top:110px;align-self:start;margin-top:0;max-width:calc(75svh - 105px)}}
+@media(min-width:651px) and (max-width:1000px){.about-main{gap:45px}}
+@media(min-width:651px) and (max-width:900px){.about-main{gap:35px}}
