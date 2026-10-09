@@ -9,8 +9,6 @@ const body=document.getElementById('dialog-body');
 function openDialog(heading,content){title.textContent=heading;body.innerHTML=content;modal.showModal();}
 document.querySelectorAll('[data-action]').forEach(button=>button.addEventListener('click',()=>{
   const action=button.dataset.action;
-  if(action==='schedule')openDialog('Agendamento pelo WhatsApp','<p>Este é o espaço reservado para o contato da equipe de agendamento.</p><p><strong>WhatsApp: [número profissional]</strong></p><p class="prototype-note">O número ainda não foi fornecido. Na versão final, este botão abrirá o WhatsApp com uma mensagem de solicitação de consulta. Nenhuma mensagem foi enviada.</p>');
-  if(action==='map')openDialog('Localização do consultório','<p><strong>[Nome da clínica ou consultório]</strong><br>[Rua, número, complemento e sala]<br>[Bairro] — Florianópolis/SC<br>[CEP]</p><p class="prototype-note">O endereço ainda precisa ser confirmado para vincular a rota correta no Google Maps.</p>');
   if(action==='reviews')openDialog('Avaliações no Google','<p>O perfil profissional do Google será vinculado após a confirmação do endereço público correto.</p><p class="prototype-note">As avaliações desta seção são espaços reservados. Não foram criados depoimentos nem notas fictícias.</p>');
 }));
 document.querySelectorAll('[data-dialog]').forEach(button=>button.addEventListener('click',()=>{const template=document.getElementById(button.dataset.dialog);openDialog(template.content.querySelector('h2').textContent,template.content.querySelector('div').innerHTML);}));
