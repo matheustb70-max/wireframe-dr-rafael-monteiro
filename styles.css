@@ -53,3 +53,6 @@ h1 strong{display:inline}h2{font-size:clamp(24px,3.3vw,52px)}.hero-description .
 
 svg.icon{fill:none}.section-divider>span .icon{fill:none;stroke:currentColor}
 .patient-review blockquote p{color:var(--ink)}
+
+/* Ilustrações fornecidas, na proporção original e com arquivos responsivos. */
+.treatment-art,.reverse .treatment-art{height:auto;aspect-ratio:4/3;background:transparent;border:0;display:block;overflow:hidden}.treatment-illustration{display:block;width:100%;height:auto}
