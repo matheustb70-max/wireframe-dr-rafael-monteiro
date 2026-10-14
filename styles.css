@@ -82,3 +82,7 @@ svg.icon{fill:none}.section-divider>span .icon{fill:none;stroke:currentColor}
 /* Cabeçalho compacto com a navegação original. */
 .site-header{padding-top:8px;padding-bottom:8px;gap:24px;min-height:72px}.site-header .brand-logo{width:170px}.site-header .nav-cta{white-space:nowrap}html{scroll-padding-top:85px}
 @media(max-width:650px){.site-header{min-height:64px;padding-top:7px;padding-bottom:7px;gap:15px}.site-header .brand-logo{width:150px}}
+
+/* Avaliações importadas diretamente do perfil público no Google. */
+.google-rating{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;margin:0 0 28px}.google-rating>strong{font-size:32px;color:#fff;line-height:1}.google-rating>a{display:inline-flex;align-items:center;gap:8px;font-size:14px;text-decoration:underline;text-underline-offset:4px}.reviews-carousel .article-carousel-button{color:#d9edf5;border-color:#638394}.reviews-carousel .article-carousel-button:hover:not(:disabled){background:#e7f2f6;color:var(--ink)}.reviews-carousel .article-carousel-status{color:#c7dbe3}.reviews-carousel .patient-review{box-sizing:border-box;border-radius:18px;overflow:hidden}.review-publication{display:block;font-size:11px;color:var(--muted);margin-top:3px}.reviews-carousel .review-person{margin-top:auto}.reviews-carousel .review-source{margin-top:18px}.reviews-carousel .review-person strong{white-space:normal}.reviews-carousel blockquote{margin-bottom:24px}
+@media(max-width:650px){.google-rating{justify-content:flex-start;gap:12px}.google-rating>a{font-size:12px}}
