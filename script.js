@@ -42,37 +42,48 @@ document.querySelectorAll('.photo-carousel').forEach(carousel=>{
   viewport.addEventListener('pointercancel',()=>{gesture=null;});
 });
 
-// Sanfonas nativas com transição de altura e conteúdo, inclusive no fechamento.
+// Sanfonas com transição e um único item expandido por seção.
+const accordionControllers=new Map();
 document.querySelectorAll('.animated-accordion').forEach(details=>{
   const summary=details.querySelector(':scope > summary');
   const panel=details.querySelector(':scope > .accordion-panel');
+  const group=details.closest('section');
   let animation=null;
   let expanded=details.open;
   details.classList.toggle('is-expanded',expanded);
-  details.addEventListener('toggle',()=>{if(!animation){expanded=details.open;details.classList.toggle('is-expanded',expanded);}});
-  summary.addEventListener('click',event=>{
-    if(matchMedia('(prefers-reduced-motion: reduce)').matches||!panel.animate)return;
-    event.preventDefault();
+  function setExpanded(next){
     const startHeight=details.open?panel.getBoundingClientRect().height:0;
     const startOpacity=details.open?Number(getComputedStyle(panel).opacity):0;
-    expanded=!expanded;
-    if(animation)animation.cancel();
-    details.open=true;
+    if(animation){animation.cancel();animation=null;}
+    expanded=next;
     details.classList.toggle('is-expanded',expanded);
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches||!panel.animate){
+      details.open=expanded;panel.style.removeProperty('overflow');return;
+    }
+    details.open=true;
     panel.style.overflow='hidden';
-    const endHeight=expanded?panel.scrollHeight:0;
     const currentAnimation=panel.animate([
       {height:startHeight+'px',opacity:startOpacity,transform:'translateY(0)'},
-      {height:endHeight+'px',opacity:expanded?1:0,transform:expanded?'translateY(0)':'translateY(-6px)'}
+      {height:expanded?panel.scrollHeight+'px':'0px',opacity:expanded?1:0,transform:expanded?'translateY(0)':'translateY(-6px)'}
     ],{duration:360,easing:'cubic-bezier(.22,1,.36,1)',fill:'both'});
     animation=currentAnimation;
     currentAnimation.onfinish=()=>{
       if(animation!==currentAnimation)return;
-      details.open=expanded;
-      currentAnimation.cancel();
-      panel.style.removeProperty('overflow');
-      animation=null;
+      details.open=expanded;currentAnimation.cancel();
+      panel.style.removeProperty('overflow');animation=null;
     };
+  }
+  accordionControllers.set(details,{group,close:()=>setExpanded(false)});
+  details.addEventListener('toggle',()=>{
+    if(!animation){expanded=details.open;details.classList.toggle('is-expanded',expanded);}
+  });
+  summary.addEventListener('click',event=>{
+    event.preventDefault();
+    const next=!expanded;
+    if(next)accordionControllers.forEach((controller,other)=>{
+      if(other!==details&&controller.group===group&&other.classList.contains('is-expanded'))controller.close();
+    });
+    setExpanded(next);
   });
 });
 
