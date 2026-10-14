@@ -52,3 +52,4 @@ h1 strong{display:inline}h2{font-size:clamp(24px,3.3vw,52px)}.hero-description .
 @media(prefers-reduced-motion:reduce){.toggle .icon,.animated-accordion summary,.condition-item,.faq-item{transition:none}}
 
 svg.icon{fill:none}.section-divider>span .icon{fill:none;stroke:currentColor}
+.patient-review blockquote p{color:var(--ink)}
