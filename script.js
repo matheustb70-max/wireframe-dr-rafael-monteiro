@@ -1,3 +1,8 @@
+const menu=document.querySelector('.menu-toggle');
+const nav=document.getElementById('navigation');
+menu.addEventListener('click',()=>{const expanded=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',String(expanded));nav.classList.toggle('open',expanded);});
+nav.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{menu.setAttribute('aria-expanded','false');nav.classList.remove('open');}));
+document.addEventListener('keydown',event=>{if(event.key==='Escape'){menu.setAttribute('aria-expanded','false');nav.classList.remove('open');}});
 const modal=document.getElementById('preview-dialog');
 const title=document.getElementById('dialog-title');
 const body=document.getElementById('dialog-body');
