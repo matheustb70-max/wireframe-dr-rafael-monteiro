@@ -41,3 +41,37 @@ document.querySelectorAll('.photo-carousel').forEach(carousel=>{
   });
   viewport.addEventListener('pointercancel',()=>{gesture=null;});
 });
+
+// Sanfonas nativas com transição de altura e conteúdo, inclusive no fechamento.
+document.querySelectorAll('.animated-accordion').forEach(details=>{
+  const summary=details.querySelector(':scope > summary');
+  const panel=details.querySelector(':scope > .accordion-panel');
+  let animation=null;
+  let expanded=details.open;
+  details.classList.toggle('is-expanded',expanded);
+  details.addEventListener('toggle',()=>{if(!animation){expanded=details.open;details.classList.toggle('is-expanded',expanded);}});
+  summary.addEventListener('click',event=>{
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches||!panel.animate)return;
+    event.preventDefault();
+    const startHeight=details.open?panel.getBoundingClientRect().height:0;
+    const startOpacity=details.open?Number(getComputedStyle(panel).opacity):0;
+    expanded=!expanded;
+    if(animation)animation.cancel();
+    details.open=true;
+    details.classList.toggle('is-expanded',expanded);
+    panel.style.overflow='hidden';
+    const endHeight=expanded?panel.scrollHeight:0;
+    const currentAnimation=panel.animate([
+      {height:startHeight+'px',opacity:startOpacity,transform:'translateY(0)'},
+      {height:endHeight+'px',opacity:expanded?1:0,transform:expanded?'translateY(0)':'translateY(-6px)'}
+    ],{duration:360,easing:'cubic-bezier(.22,1,.36,1)',fill:'both'});
+    animation=currentAnimation;
+    currentAnimation.onfinish=()=>{
+      if(animation!==currentAnimation)return;
+      details.open=expanded;
+      currentAnimation.cancel();
+      panel.style.removeProperty('overflow');
+      animation=null;
+    };
+  });
+});

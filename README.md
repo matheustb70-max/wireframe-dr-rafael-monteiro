@@ -12,3 +12,6 @@ A foto da biografia é servida em WebP com larguras de 600, 1000 e 1400 pixels, 
 
 ## Publicação
 GitHub Pages: branch main, pasta raiz. Endereço preservado: https://matheustb70-max.github.io/wireframe-dr-rafael-monteiro/.
+
+## Interface e fontes
+Ícones Lucide em sprite SVG local (licença ISC em assets/LUCIDE-LICENSE.txt). Jornada da consulta em cartões e linha do tempo, inspirada no padrão Process List do USWDS: https://designsystem.digital.gov/components/process-list/. Sanfonas com transição de abertura/fechamento e suporte à preferência de movimento reduzido. Avaliações: trechos de registros públicos do Google reproduzidos no site do médico, com autor, data e link da fonte: https://drmurillomourao.com.br/.
