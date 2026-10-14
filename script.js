@@ -1,8 +1,3 @@
-const menu=document.querySelector('.menu-toggle');
-const nav=document.getElementById('navigation');
-menu.addEventListener('click',()=>{const expanded=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',String(expanded));nav.classList.toggle('open',expanded);});
-nav.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{menu.setAttribute('aria-expanded','false');nav.classList.remove('open');}));
-document.addEventListener('keydown',event=>{if(event.key==='Escape'){menu.setAttribute('aria-expanded','false');nav.classList.remove('open');}});
 const modal=document.getElementById('preview-dialog');
 const title=document.getElementById('dialog-title');
 const body=document.getElementById('dialog-body');
@@ -74,4 +69,30 @@ document.querySelectorAll('.animated-accordion').forEach(details=>{
       animation=null;
     };
   });
+});
+
+// Carrossel de artigos: scroll nativo para toque, setas e teclado.
+document.querySelectorAll('.article-carousel').forEach(carousel=>{
+  const track=carousel.querySelector('.articles-grid');
+  const cards=[...track.querySelectorAll('.article-card')];
+  const previous=carousel.querySelector('[data-articles-prev]');
+  const next=carousel.querySelector('[data-articles-next]');
+  const status=carousel.querySelector('.article-carousel-status');
+  const format=value=>String(value).padStart(2,'0');
+  const step=()=>cards[0].getBoundingClientRect().width+20;
+  function update(){
+    const first=Math.round(track.scrollLeft/step());
+    const visible=Math.max(1,Math.round((track.clientWidth+20)/step()));
+    const last=Math.min(cards.length,first+visible);
+    status.textContent=format(first+1)+(last>first+1?'–'+format(last):'')+' / '+format(cards.length);
+    previous.disabled=track.scrollLeft<2;
+    next.disabled=track.scrollLeft>=track.scrollWidth-track.clientWidth-2;
+  }
+  function move(direction){track.scrollBy({left:direction*step(),behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});}
+  previous.addEventListener('click',()=>move(-1));
+  next.addEventListener('click',()=>move(1));
+  track.addEventListener('keydown',event=>{if(event.target!==track)return;if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();move(event.key==='ArrowLeft'?-1:1);}});
+  track.addEventListener('scroll',update,{passive:true});
+  new ResizeObserver(update).observe(track);
+  update();
 });
