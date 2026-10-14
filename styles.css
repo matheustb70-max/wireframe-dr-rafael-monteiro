@@ -76,3 +76,5 @@ svg.icon{fill:none}.section-divider>span .icon{fill:none;stroke:currentColor}
 /* Identidade visual fornecida pelo médico. */
 .brand-logo{display:block;width:280px;height:auto;max-width:100%;object-fit:contain}.site-header .brand{flex-shrink:0}.site-footer .brand{display:inline-flex;margin-bottom:18px}.site-footer .brand-logo{width:300px}
 @media(max-width:650px){.brand-logo{width:225px}.site-footer .brand-logo{width:260px}}
+
+.round-seal .brand-symbol{display:block;width:75%;height:75%;object-fit:contain;margin:auto}
