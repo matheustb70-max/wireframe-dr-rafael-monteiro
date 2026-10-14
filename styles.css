@@ -72,3 +72,7 @@ svg.icon{fill:none}.section-divider>span .icon{fill:none;stroke:currentColor}
 
 /* Capas fotográficas dos artigos. */
 .article-carousel .article-cover{padding:0;height:auto;aspect-ratio:16/9;overflow:hidden;background:#e3edf1}.article-cover img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}.article-card:nth-child(3) .article-cover img{object-position:center 60%}
+
+/* Identidade visual fornecida pelo médico. */
+.brand-logo{display:block;width:280px;height:auto;max-width:100%;object-fit:contain}.site-header .brand{flex-shrink:0}.site-footer .brand{display:inline-flex;margin-bottom:18px}.site-footer .brand-logo{width:300px}
+@media(max-width:650px){.brand-logo{width:225px}.site-footer .brand-logo{width:260px}}
