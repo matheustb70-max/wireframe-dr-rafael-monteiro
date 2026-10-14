@@ -69,3 +69,6 @@ svg.icon{fill:none}.section-divider>span .icon{fill:none;stroke:currentColor}
 @media(max-width:1000px){.article-carousel .article-card{flex-basis:calc((100% - 20px)/2)}}
 @media(max-width:650px){.article-carousel .article-card{flex-basis:100%}.article-carousel-controls{justify-content:space-between}.article-carousel .article-art{height:190px}}
 @media(prefers-reduced-motion:reduce){.article-carousel .articles-grid{scroll-behavior:auto}}
+
+/* Capas fotográficas dos artigos. */
+.article-carousel .article-cover{padding:0;height:auto;aspect-ratio:16/9;overflow:hidden;background:#e3edf1}.article-cover img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}.article-card:nth-child(3) .article-cover img{object-position:center 60%}
